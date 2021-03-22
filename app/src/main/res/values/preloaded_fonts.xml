@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/</item>
+        <item>@font/alex_brush</item>
+        <item>@font/bigshot_one</item>
+        <item>@font/croissant_one</item>
+        <item>@font/el_messiri</item>
+        <item>@font/emilys_candy</item>
+        <item>@font/just_me_again_down_here</item>
+        <item>@font/lobster_two</item>
+    </array>
+</resources>
