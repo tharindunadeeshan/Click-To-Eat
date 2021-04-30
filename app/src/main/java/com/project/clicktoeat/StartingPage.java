@@ -46,7 +46,7 @@ public class StartingPage extends AppCompatActivity {
        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(StartingPage.this,AddLocation.class );
+                Intent intent = new Intent(StartingPage.this,WelcomePage.class );
                 startActivity(intent);
                 finish();
             }
