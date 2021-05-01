@@ -2,9 +2,12 @@ package com.project.clicktoeat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Pair;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -46,9 +49,15 @@ public class StartingPage extends AppCompatActivity {
        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(StartingPage.this,WelcomePage.class );
-                startActivity(intent);
-                finish();
+                Intent intent = new Intent(StartingPage.this,Login.class );
+               Pair[] pairs =new Pair[2];
+               pairs[0] =new Pair<View,String>(iamge,"logo_image");
+               pairs[1] =new Pair<View,String>(logo,"logo_text");
+
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    ActivityOptions options =ActivityOptions.makeSceneTransitionAnimation(StartingPage.this,pairs);
+                    startActivity(intent,options.toBundle());
+                }
             }
         },SPLASH_SCREEN);
 

@@ -37,4 +37,5 @@
     <string name="start">Start</string>
     <string name="customer_name1">"Customer Name "</string>
     <string name="customer_name">Customer Name</string>
+    <string name="registerUser">registerUser</string>
 </resources>
