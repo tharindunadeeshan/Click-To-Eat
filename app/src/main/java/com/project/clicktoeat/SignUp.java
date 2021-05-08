@@ -2,6 +2,7 @@ package com.project.clicktoeat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -50,7 +51,7 @@ public class SignUp extends AppCompatActivity {
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!validateName() | !validateUserName() | !validateEmail() | !validatePhoneNo() | validatePassword()) {
+                if (!validateName() | !validateUserName() | !validateEmail() | !validatePhoneNo() |! validatePassword()) {
                     return;
                 }
                 rootNode = FirebaseDatabase.getInstance();
@@ -66,12 +67,19 @@ public class SignUp extends AppCompatActivity {
 
                 UserHelper helperClass = new UserHelper(name, username, email, phoneNO, password);
                 reference.child(phoneNO).setValue(helperClass);
+
+
+                    Intent intent = new Intent(SignUp.this,Login.class);
+                    startActivity(intent);
+
+
+
+
             }
         });
 
-
-
     }
+
 
     private Boolean validateName () {
         String val = regName.getEditText().getText().toString();
@@ -135,12 +143,16 @@ public class SignUp extends AppCompatActivity {
 
     private Boolean validatePassword () {
         String val = regPassword.getEditText().getText().toString();
-        String passwordVal = "^" +
-                "(?=.*[a-zA-Z])" +
-                "(?=.*[@#$%^&+=])" +
-                "(?=\\s+$)" +
-                ".{4,}" +
+        String passwordVal ="^" +
+                "(?=.*[0-9])" +         //at least 1 digit
+                "(?=.*[a-z])" +         //at least 1 lower case letter
+                "(?=.*[A-Z])" +         //at least 1 upper case letter
+                "(?=.*[a-zA-Z])" +      //any letter
+                "(?=.*[@#$%^&+=])" +    //at least 1 special character
+                "(?=\\S+$)" +           //no white spaces
+                ".{8,}" +               //at least 8 characters
                 "$";
+
 
         if (val.isEmpty()) {
             regPassword.setError("Filed cannot be Empty ");
@@ -153,6 +165,8 @@ public class SignUp extends AppCompatActivity {
             return true;
         }
     }
+
+
 }
 
 

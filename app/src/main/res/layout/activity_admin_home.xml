@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ADP.AdminHome"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <ImageView
+        android:layout_gravity="center_horizontal"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:transitionName="logo_image"
+        app:srcCompat="@drawable/clicktoeat" />
+
+    <TextView
+        android:gravity="center_horizontal"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Administrator"
+        android:textColor="#ff6600"
+        android:textSize="30sp"
+        android:transitionName="logo_text"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_adminhome_food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#000000"
+            android:elevation="0dp"
+            android:text="Food"
+            android:textColor="#fff"
+            app:backgroundTint="@color/black" />
+
+        <Button
+            android:id="@+id/btn_adminhome_users"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#000000"
+            android:elevation="0dp"
+            android:text="Users"
+            android:textColor="#fff"
+            app:backgroundTint="@color/black" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
