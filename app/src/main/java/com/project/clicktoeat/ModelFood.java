@@ -1,6 +1,7 @@
-/*package com.project.clicktoeat.ADMINISTRATOR;
+package com.project.clicktoeat;
 
 public class ModelFood {
+
     String f_id;
     String f_image;
     int f_price;
@@ -54,4 +55,3 @@ public class ModelFood {
         this.f_title = f_title;
     }
 }
-*/

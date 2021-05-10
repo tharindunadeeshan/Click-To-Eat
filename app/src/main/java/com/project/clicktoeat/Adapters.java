@@ -1,29 +1,20 @@
-/*package com.project.clicktoeat.ADP;
+package com.project.clicktoeat;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.ColorSpace;
 import android.os.Bundle;
-import android.text.Layout;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
-import com.project.clicktoeat.ADMINISTRATOR.AdminFoodView;
-import com.project.clicktoeat.ADMINISTRATOR.ModelFood;
-import com.project.clicktoeat.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Adapters extends BaseAdapter {
+public class Adapters {
+
     Context context;
     List list = new ArrayList();
     LayoutInflater inflater;
@@ -77,7 +68,7 @@ public class Adapters extends BaseAdapter {
         btnView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(context.getApplicationContext(), AdminFoodView.class);
+                Intent i = new Intent(context.getApplicationContext(), AdminFood_View.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("id_key", id);
                 bundle.putString("title_key", title);
@@ -91,4 +82,3 @@ public class Adapters extends BaseAdapter {
         return view1;
     }
 }
-*/

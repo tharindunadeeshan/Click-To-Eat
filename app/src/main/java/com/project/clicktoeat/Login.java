@@ -9,6 +9,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Pair;
 import android.view.View;
 import android.view.Window;
@@ -25,14 +26,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.project.clicktoeat.ADP.AdminHome;
+//import com.project.clicktoeat.ADP.AdminHome;
 
 public class Login extends AppCompatActivity {
 
     Button callSignUp, login_btn;
     ImageView image;
     TextView logoText, sloganText;
-     TextInputLayout  username, password;
+    TextInputLayout username, password;
     Switch active;
 
     @Override
@@ -53,6 +54,7 @@ public class Login extends AppCompatActivity {
         login_btn = findViewById(R.id.Login_btn);
         active = findViewById(R.id.active);
 
+        LoadingDialog loadingDialog = new LoadingDialog(Login.this);
         callSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,10 +78,10 @@ public class Login extends AppCompatActivity {
         });
 
 
-       login_btn.setOnClickListener(new View.OnClickListener() {
+        login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( !validateUserName()  |! validatePassword()) {
+                if (!validateUserName() | !validatePassword()) {
                     return;
                 }
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -87,42 +89,62 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                         String input1 = username.getEditText().getText().toString();
-                         String input2 = password.getEditText().getText().toString();
+                        String input1 = username.getEditText().getText().toString();
+                        String input2 = password.getEditText().getText().toString();
 
 
-                        if (snapshot.child(input1).exists()){
+                        if (snapshot.child(input1).exists()) {
 
-                            if (snapshot.child(input1).child("password").getValue(String.class).equals(input2)){
+                            if (snapshot.child(input1).child("password").getValue(String.class).equals(input2)) {
 
-                                if (active.isChecked()){
-                                    if (snapshot.child(input1).child("as").equals("admin")){
+                                if (active.isChecked()) {
+                                    if (snapshot.child(input1).child("as").equals("admin")) {
 
-                                        preferences.setDataLogin(Login.this,true);
-                                        preferences.setDataAs(Login.this,"admin");
+                                        preferences.setDataLogin(Login.this, true);
+                                        preferences.setDataAs(Login.this, "admin");
 
                                         startActivity(new Intent(Login.this, DeleveryHomePage.class));
 
-                                    }else if (snapshot.child(input1).child("as").getValue(String.class).equals("user")){
-                                        preferences.setDataLogin(Login.this,true);
-                                        preferences.setDataAs(Login.this,"user");
-                                        startActivity(new Intent(Login.this,HomeFood.class));
-                                        pushNotification("succsess","Welcome Click TO Eat");
+                                    } else if (snapshot.child(input1).child("as").getValue(String.class).equals("user")) {
+                                        preferences.setDataLogin(Login.this, true);
+                                        preferences.setDataAs(Login.this, "user");
+                                        startActivity(new Intent(Login.this, HomeFood.class));
+                                        loadingDialog.starttLoadingDialog();
 
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                loadingDialog.dismissDialog();
+                                            }
+                                        }, 5000);
+
+                                        pushNotification("Succsess", "Welcome Click TO Eat");
 
 
                                     }
-                                }else {
-                                    if (snapshot.child(input1).child("as").getValue(String.class).equals("admin")){
+                                } else {
+                                    if (snapshot.child(input1).child("as").getValue(String.class).equals("admin")) {
 
-                                        preferences.setDataLogin(Login.this,false);
-                                        startActivity(new Intent(Login.this,DeleveryHomePage.class));
+                                        preferences.setDataLogin(Login.this, false);
+                                        startActivity(new Intent(Login.this, DeleveryHomePage.class));
 
-                                    }else if (snapshot.child(input1).child("as").getValue(String.class).equals("user")){
-                                        preferences.setDataLogin(Login.this,false);
-                                        startActivity(new Intent(Login.this,HomeFood.class));
-                                        pushNotification("succsess","Welcome Click TO Eat");
+                                    } else if (snapshot.child(input1).child("as").getValue(String.class).equals("user")) {
+                                        preferences.setDataLogin(Login.this, false);
+                                        startActivity(new Intent(Login.this, HomeFood.class));
 
+
+                                        loadingDialog.starttLoadingDialog();
+
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                loadingDialog.dismissDialog();
+                                            }
+                                        }, 5000);
+
+                                        pushNotification("succsess", "Welcome Click TO Eat");
 
 
                                     }
@@ -130,12 +152,10 @@ public class Login extends AppCompatActivity {
                                 }
 
 
-
-                            }else{
+                            } else {
                                 Toast.makeText(Login.this, "data send 1 slah", Toast.LENGTH_SHORT).show();
                             }
-                        }
-                        else{
+                        } else {
                             Toast.makeText(Login.this, "Data belum terdaftar", Toast.LENGTH_SHORT).show();
                         }
 
@@ -157,17 +177,18 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (preferences.getDataLogin(this)){
-            if (preferences.getDataAs(this).equals("admin")){
-                startActivity(new Intent(Login.this,DeleveryHomePage.class));
+        if (preferences.getDataLogin(this)) {
+            if (preferences.getDataAs(this).equals("admin")) {
+                startActivity(new Intent(Login.this, DeleveryHomePage.class));
                 finish();
-            }else if(preferences.getDataAs(this).equals("user")){
-                startActivity(new Intent(Login.this,HomeFood.class));
+            } else if (preferences.getDataAs(this).equals("user")) {
+                startActivity(new Intent(Login.this, HomeFood.class));
 
                 finish();
             }
         }
     }
+
     private Boolean validateUserName() {
         String val = username.getEditText().getText().toString();
 
@@ -180,6 +201,7 @@ public class Login extends AppCompatActivity {
             return true;
         }
     }
+
 
     private Boolean validatePassword() {
         String val = password.getEditText().getText().toString();
@@ -194,18 +216,17 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    private  void  pushNotification(String title ,String body){
+    private void pushNotification(String title, String body) {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Notification notification = new Notification.Builder(getApplicationContext())
                 .setContentTitle(title)
                 .setContentText(body)
-                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setSmallIcon(R.drawable.clicktoeat)
                 .build();
 
         notificationManager.notify(0, notification);
     }
-
 
 
 }

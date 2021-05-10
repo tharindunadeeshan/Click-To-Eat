@@ -1,4 +1,4 @@
- /*package com.project.clicktoeat.ADMINISTRATOR;
+package com.project.clicktoeat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,27 +7,24 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
-import com.project.clicktoeat.ADP.Adapters;
-import com.project.clicktoeat.FirebaseConnect;
-import com.project.clicktoeat.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminFood extends AppCompatActivity {
+public class Admin_Food extends AppCompatActivity {
     List<ModelFood> list = new ArrayList();
     ListView lvfood;
     Button btnAddFood;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_food);
+        setContentView(R.layout.activity_admin__food);
 
         lvfood = findViewById(R.id.lv_allfooditems);
         btnAddFood = findViewById(R.id.btn_adminhome_food);
@@ -46,7 +43,7 @@ public class AdminFood extends AppCompatActivity {
                     ModelFood food = postSnapshot.getValue(ModelFood.class);
                     list.add(food);
                 }
-                lvfood.setAdapter(new Adapters(AdminFood.this, list));
+                lvfood.setAdapter((ListAdapter) new Adapters(Admin_Food.this, list));
             }
 
             @Override
@@ -60,9 +57,11 @@ public class AdminFood extends AppCompatActivity {
         btnAddFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), AdminAddFood.class);
+                Intent i = new Intent(getApplicationContext(), Admin_AddFood.class);
                 startActivity(i);
             }
         });
+
+
     }
-}*/
+}

@@ -4,7 +4,7 @@ public class UserHelper {
 
     String name,username,email, phoneNo, Password;
 
-    public UserHelper() {
+    public UserHelper(String name) {
     }
 
     public UserHelper(String name, String username, String email, String phoneNo, String password) {

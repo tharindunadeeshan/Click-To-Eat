@@ -1,4 +1,4 @@
-package com.project.clicktoeat.ADP;
+package com.project.clicktoeat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,25 +7,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.project.clicktoeat.R;
+public class Admin_Home extends AppCompatActivity {
 
-public class AdminHome extends AppCompatActivity {
     Button btnFood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_home);
+        setContentView(R.layout.activity_admin__home);
 
         btnFood = findViewById(R.id.btn_adminhome_food);
 
-        /*btnFood.setOnClickListener(new View.OnClickListener() {
+        btnFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), AdminFood.class);
+                Intent i = new Intent(getApplicationContext(), Admin_Food.class);
                 startActivity(i);
 //                finish();
             }
-        });*/
+        });
     }
+
 }

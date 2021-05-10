@@ -1,4 +1,4 @@
-/*package com.project.clicktoeat.ADMINISTRATOR;
+package com.project.clicktoeat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,11 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.project.clicktoeat.FirebaseConnect;
-import com.project.clicktoeat.R;
+public class AdminFood_View extends AppCompatActivity {
 
-public class AdminFoodView extends AppCompatActivity {
     Button edit, delete, goback;
     EditText id, title, price;
     ImageView image;
@@ -24,7 +21,7 @@ public class AdminFoodView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_food_view);
+        setContentView(R.layout.activity_admin_food__view);
 
         edit = findViewById(R.id.btn_admin_view_edit);
         delete = findViewById(R.id.btn_admin_view_delete);
@@ -73,7 +70,7 @@ public class AdminFoodView extends AppCompatActivity {
                     ModelFood modelFood = new ModelFood(edittedid, image_bundle, edittedprice, edittedtitle);
                     firebaseConnect.getMyRef().child(id_bundle).setValue(modelFood);
 
-                    Toast.makeText(AdminFoodView.this, "Updated Successfully!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AdminFood_View.this, "Updated Successfully!", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -81,7 +78,7 @@ public class AdminFoodView extends AppCompatActivity {
         goback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(AdminFoodView.this, AdminFood.class);
+                Intent i = new Intent(AdminFood_View.this, Admin_Food.class);
                 startActivity(i);
                 finish();
             }
@@ -93,14 +90,17 @@ public class AdminFoodView extends AppCompatActivity {
                 FirebaseConnect firebaseConnect = new FirebaseConnect("food_table");
                 firebaseConnect.getMyRef().child(id_bundle).removeValue();
 
-                Toast.makeText(AdminFoodView.this, "Deleted!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminFood_View.this, "Deleted!", Toast.LENGTH_SHORT).show();
 
-                Intent i = new Intent(AdminFoodView.this, AdminFood.class);
+                Intent i = new Intent(AdminFood_View.this, Admin_Food.class);
                 startActivity(i);
                 finish();
 
             }
         });
 
+
     }
-}*/
+
+
+}

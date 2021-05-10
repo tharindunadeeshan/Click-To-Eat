@@ -107,22 +107,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:hint="Password">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/password_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/custom_lock_icon"
-                    android:drawablePadding="10dp"
-                    android:text="abcd12345" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
             <Button
                 android:id="@+id/update_profile"
                 android:layout_width="match_parent"
@@ -130,6 +114,13 @@
                 android:background="#4C4543"
                 android:text="Update"
                 app:backgroundTint="#009688" />
+
+            <Button
+                android:id="@+id/DeleteAccountBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Delete My Account"
+                app:backgroundTint="#F44336" />
 
 
         </LinearLayout>

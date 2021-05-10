@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
@@ -44,6 +45,7 @@ public class SignUp extends AppCompatActivity {
         regloginbtn = findViewById(R.id.reg_login_btn);
         //
 
+        LoadingDialog loadingDialog = new LoadingDialog(SignUp.this);
 
         //
 
@@ -51,7 +53,7 @@ public class SignUp extends AppCompatActivity {
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!validateName() | !validateUserName() | !validateEmail() | !validatePhoneNo() |! validatePassword()) {
+                if (!validateName() | !validateUserName() | !validateEmail() | !validatePhoneNo() | !validatePassword()) {
                     return;
                 }
                 rootNode = FirebaseDatabase.getInstance();
@@ -69,10 +71,18 @@ public class SignUp extends AppCompatActivity {
                 reference.child(phoneNO).setValue(helperClass);
 
 
-                    Intent intent = new Intent(SignUp.this,Login.class);
-                    startActivity(intent);
+                Intent intent = new Intent(SignUp.this, Login.class);
+                startActivity(intent);
 
+                loadingDialog.starttLoadingDialog();
 
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadingDialog.dismissDialog();
+                    }
+                }, 5000);
 
 
             }
@@ -81,7 +91,7 @@ public class SignUp extends AppCompatActivity {
     }
 
 
-    private Boolean validateName () {
+    private Boolean validateName() {
         String val = regName.getEditText().getText().toString();
 
         if (val.isEmpty()) {
@@ -94,7 +104,7 @@ public class SignUp extends AppCompatActivity {
         }
     }
 
-    private Boolean validateUserName () {
+    private Boolean validateUserName() {
         String val = regUsername.getEditText().getText().toString();
         String noWhitwSpase = "\\A\\w{4,20}\\z";
 
@@ -113,7 +123,7 @@ public class SignUp extends AppCompatActivity {
         }
     }
 
-    private Boolean validateEmail () {
+    private Boolean validateEmail() {
         String val = regEmail.getEditText().getText().toString();
         String emailpatten = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
@@ -129,7 +139,7 @@ public class SignUp extends AppCompatActivity {
         }
     }
 
-    private Boolean validatePhoneNo () {
+    private Boolean validatePhoneNo() {
         String val = regphoneNO.getEditText().getText().toString();
 
         if (val.isEmpty()) {
@@ -141,9 +151,9 @@ public class SignUp extends AppCompatActivity {
         }
     }
 
-    private Boolean validatePassword () {
+    private Boolean validatePassword() {
         String val = regPassword.getEditText().getText().toString();
-        String passwordVal ="^" +
+        String passwordVal = "^" +
                 "(?=.*[0-9])" +         //at least 1 digit
                 "(?=.*[a-z])" +         //at least 1 lower case letter
                 "(?=.*[A-Z])" +         //at least 1 upper case letter
