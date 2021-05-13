@@ -11,18 +11,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ClickToEat">
+
+
+
         <activity android:name=".DeleveryBoyProfileEdit"></activity>
+
+
+        <activity android:name=".OrderSucceessActivity" />
+        <activity android:name=".PlaceYourOrderActivity" />
+        <activity android:name=".RestaurantMenuActivity" />
+        <activity android:name=".MainActivity" />
+
         <activity android:name=".ViewData_FireStore" />
         <activity android:name=".InsertData_firebase" />
         <activity android:name=".AdminFood_View" />
         <activity android:name=".Admin_AddFood" />
         <activity android:name=".Admin_Food" />
         <activity android:name=".Admin_Home" />
-        <activity android:name=".ADMINISTRATOR.ModelFood" />
-        <activity android:name=".ADMINISTRATOR.AdminFoodView" />
-        <activity android:name=".ADMINISTRATOR.AdminAddFood" />
-        <activity android:name=".ADMINISTRATOR.AdminFood" />
-        <activity android:name=".ADP.AdminHome" />
         <activity android:name=".TotaOrders" />
         <activity android:name=".AddLocation" />
         <activity android:name=".DeleveryManProfile" />

@@ -103,12 +103,12 @@ public class Login extends AppCompatActivity {
                                         preferences.setDataLogin(Login.this, true);
                                         preferences.setDataAs(Login.this, "admin");
 
-                                        startActivity(new Intent(Login.this, DeleveryHomePage.class));
+                                        startActivity(new Intent(Login.this, Admin_Home.class));
 
                                     } else if (snapshot.child(input1).child("as").getValue(String.class).equals("user")) {
                                         preferences.setDataLogin(Login.this, true);
                                         preferences.setDataAs(Login.this, "user");
-                                        startActivity(new Intent(Login.this, HomeFood.class));
+                                        startActivity(new Intent(Login.this, HomePage.class));
                                         loadingDialog.starttLoadingDialog();
 
                                         Handler handler = new Handler();
@@ -127,11 +127,11 @@ public class Login extends AppCompatActivity {
                                     if (snapshot.child(input1).child("as").getValue(String.class).equals("admin")) {
 
                                         preferences.setDataLogin(Login.this, false);
-                                        startActivity(new Intent(Login.this, DeleveryHomePage.class));
+                                        startActivity(new Intent(Login.this, Admin_Home.class));
 
                                     } else if (snapshot.child(input1).child("as").getValue(String.class).equals("user")) {
                                         preferences.setDataLogin(Login.this, false);
-                                        startActivity(new Intent(Login.this, HomeFood.class));
+                                        startActivity(new Intent(Login.this, HomePage.class));
 
 
                                         loadingDialog.starttLoadingDialog();
@@ -179,10 +179,10 @@ public class Login extends AppCompatActivity {
         super.onStart();
         if (preferences.getDataLogin(this)) {
             if (preferences.getDataAs(this).equals("admin")) {
-                startActivity(new Intent(Login.this, DeleveryHomePage.class));
+                startActivity(new Intent(Login.this, Admin_Home.class));
                 finish();
             } else if (preferences.getDataAs(this).equals("user")) {
-                startActivity(new Intent(Login.this, HomeFood.class));
+                startActivity(new Intent(Login.this, HomePage.class));
 
                 finish();
             }

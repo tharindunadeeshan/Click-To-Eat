@@ -10,12 +10,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.google.firebase.database.FirebaseDatabase;
 
 public class HomePage extends AppCompatActivity {
 
-    Button btnlogout;
+    ImageView brnmyProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,20 +26,23 @@ public class HomePage extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_home_page);
 
-        btnlogout = findViewById(R.id.btnlogout);
-        btnlogout.setOnClickListener(new View.OnClickListener() {
+        brnmyProfile = findViewById(R.id.buttonMyProfile);
+        brnmyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                startActivity(new Intent(HomePage.this, MyProfile.class));
+                finish();
 
             }
         });
     }
 
-
-    public void logout(){
+    public void logout(View view){
         startActivity(new Intent(HomePage.this,Login.class));
 
         preferences.clearData(this);
+
         finish();
     }
 

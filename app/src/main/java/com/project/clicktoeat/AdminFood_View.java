@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 public class AdminFood_View extends AppCompatActivity {
 
     Button edit, delete, goback;
@@ -51,15 +53,15 @@ public class AdminFood_View extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (edit.getText().toString().equals("Edit")) {
-//                    id.setEnabled(true);
-//                    title.setEnabled(true);
-//                    price.setEnabled(true);
+                    id.setEnabled(true);
+                   title.setEnabled(true);
+                    price.setEnabled(true);
                     edit.setText("Save");
                 }
                 else {
-//                    id.setEnabled(false);
-//                    title.setEnabled(false);
-//                    price.setEnabled(false);
+                   id.setEnabled(false);
+                   title.setEnabled(false);
+                    price.setEnabled(false);
                     edit.setText("Edit");
 
                     String edittedid = id.getText().toString();

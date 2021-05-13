@@ -57,9 +57,6 @@ public class MyProfile extends AppCompatActivity {
                 dbref.removeValue();
                 Toast.makeText(MyProfile.this, "Delete Succssfully", Toast.LENGTH_SHORT).show();
 
-                Intent intent =new Intent(MyProfile.this,Login.class);
-                startActivity(intent);
-
                 loadingDialog.starttLoadingDialog();
 
                 Handler handler = new Handler();
@@ -71,5 +68,13 @@ public class MyProfile extends AppCompatActivity {
                 }, 5000);
             }
         });
+
+    }
+    public void logout(View view){
+        startActivity(new Intent(MyProfile.this,Login.class));
+
+        preferences.clearData(this);
+
+        finish();
     }
 }
